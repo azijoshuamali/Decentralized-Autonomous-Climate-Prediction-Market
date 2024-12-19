@@ -9,3 +9,5 @@ O
 tests/prediction-market.test.ts,3/b/3b14a75d262f48b83e3f0eab08e73dee3819cf3b
 M
 contracts/climate-oracle.clar,d/f/df23a6d03fb787dcc0e3ce3cee573a9210141f2b
+L
+tests/climate-oracle.test.ts,8/d/8d8b2854fce0be218d5a3b295425081c1e8f4e6b

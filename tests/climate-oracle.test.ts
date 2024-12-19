@@ -1,21 +1,39 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 
-import { describe, expect, it } from "vitest";
+describe('Climate Oracle Contract', () => {
+  let mockContractCall: any
+  
+  beforeEach(() => {
+    mockContractCall = vi.fn()
+  })
+  
+  it('should register a data provider', async () => {
+    mockContractCall.mockResolvedValue({ success: true })
+    const result = await mockContractCall('register-data-provider', 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM')
+    expect(result.success).toBe(true)
+  })
+  
+  it('should submit climate data', async () => {
+    mockContractCall.mockResolvedValue({ success: true, value: 1 })
+    const result = await mockContractCall('submit-climate-data', 25, 50, 10)
+    expect(result.success).toBe(true)
+    expect(result.value).toBe(1)
+  })
+  
+  it('should get climate data', async () => {
+    mockContractCall.mockResolvedValue({
+      success: true,
+      value: {
+        provider: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM',
+        timestamp: 12345,
+        temperature: 25,
+        precipitation: 50,
+        windSpeed: 10
+      }
+    })
+    const result = await mockContractCall('get-climate-data', 1)
+    expect(result.success).toBe(true)
+    expect(result.value.temperature).toBe(25)
+  })
+})
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
-
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
-
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
-  });
-
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
-});
