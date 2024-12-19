@@ -1,0 +1,29 @@
+[project]
+name = 'Decentralized-Autonomous-Climate-Prediction-Market'
+description = ''
+authors = []
+telemetry = true
+cache_dir = './.cache'
+requirements = []
+[contracts.climate-oracle]
+path = 'contracts/climate-oracle.clar'
+clarity_version = 2
+epoch = 2.5
+
+[contracts.climate-token]
+path = 'contracts/climate-token.clar'
+clarity_version = 2
+epoch = 2.5
+
+[contracts.prediction-market]
+path = 'contracts/prediction-market.clar'
+clarity_version = 2
+epoch = 2.5
+[repl.analysis]
+passes = ['check_checker']
+
+[repl.analysis.check_checker]
+strict = false
+trusted_sender = false
+trusted_caller = false
+callee_filter = false
